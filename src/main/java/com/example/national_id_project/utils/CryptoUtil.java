@@ -4,7 +4,7 @@ import com.example.national_id_project.ApiConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.jose4j.jws.JsonWebSignature;
-import org.springframework.util.DigestUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
@@ -113,7 +113,7 @@ public class CryptoUtil {
 
 
     public static byte[] generateThumbprint(X509Certificate cert) throws Exception {
-        byte[] digest = DigestUtils.md5Digest(cert.getEncoded());
+        byte[] digest = DigestUtils.sha256(cert.getEncoded());
 
         System.out.println("Thumbprint in hex > "+bytesToHex(digest));
 
