@@ -17,7 +17,16 @@ public class OtpRequest {
 
 
 
+
     public static String requestOtpService(ApiConfig apiConfig, String authToken, String transactionID, String individualID, String idType, String channel){
+
+        /**APIconfig**/
+
+
+
+
+
+        /**************************************************************************************************/
         try {
             OtpRequestDTO otpRequestDTO = createOtpRequestDTO(apiConfig, transactionID, individualID, idType, channel);
             String jsonString = new Gson().toJson(otpRequestDTO);
