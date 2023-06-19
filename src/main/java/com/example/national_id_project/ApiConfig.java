@@ -1,6 +1,8 @@
 package com.example.national_id_project;
 
 public class ApiConfig {
+
+    private String transactionId;
     private String appId;
     private String clientId;
     private String secretKey;
@@ -43,6 +45,7 @@ public class ApiConfig {
         this.residentAuthURL = "{base_url}/idauthentication/v1/auth/{fisp}/{partnerId}/{partnerApiKey}";
         this.residentEKYCURL = "{base_url}/idauthentication/v1/kyc/{fisp}/{partnerId}/{partnerApiKey}";
     }
+
 
     public String getSplitter(){
         return splitter;

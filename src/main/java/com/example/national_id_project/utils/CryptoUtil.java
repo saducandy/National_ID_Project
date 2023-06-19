@@ -2,9 +2,9 @@ package com.example.national_id_project.utils;
 
 import com.example.national_id_project.ApiConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.jose4j.jws.JsonWebSignature;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.jose4j.jws.JsonWebSignature;
 
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
@@ -212,6 +212,7 @@ public class CryptoUtil {
     }
 
     public static byte[] doDecode(String data) {
+        System.out.println(Base64.decodeBase64(data));
         return Base64.decodeBase64(data);
     }
 
@@ -239,7 +240,7 @@ public class CryptoUtil {
         Object objectString=  mapper.readValue(identityBlock, Object.class);
         String ekycResponseText = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectString);
         System.out.println(ekycResponseText);
-        return null;
+        return ekycResponseText;
     }
 
     private static byte[][] splitAtFirstOccurrence(byte[] strBytes, byte[] sepBytes) {

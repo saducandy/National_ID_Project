@@ -12,7 +12,7 @@ public class ResidentEKYCRequest {
     public static String getEkycForResident(ApiConfig apiConfig, String authToken, String otp, String transactionId, String individualId, String idType) {
         try {
             ResidentAuthDTO residentAuthDTO = new ResidentAuthDTO();
-            residentAuthDTO.setId("fayda.identity.auth");
+            residentAuthDTO.setId("fayda.identity.kyc");
             residentAuthDTO.setVersion(apiConfig.getVersion());
             residentAuthDTO.setRequestTime(CryptoUtil.getTime());
             residentAuthDTO.setEnv(apiConfig.getEnv());
@@ -39,7 +39,9 @@ public class ResidentEKYCRequest {
             residentAuthDTO.setRequestHMAC(CryptoUtil.generateHMAC(requestBlock));
             residentAuthDTO.setThumbprint(Base64.encodeBase64URLSafeString(CryptoUtil.generateThumbprint(CryptoUtil.getCertificate(apiConfig))));
 
-            return RequestUtil.performRequest(apiConfig, apiConfig.getResidentAuthURL(), authToken, new Gson().toJson(residentAuthDTO));
+            System.out.println(apiConfig.getResidentEKYCURL());
+
+            return RequestUtil.performRequest(apiConfig, apiConfig.getResidentEKYCURL(), authToken, new Gson().toJson(residentAuthDTO));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
