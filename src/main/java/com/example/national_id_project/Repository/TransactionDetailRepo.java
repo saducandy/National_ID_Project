@@ -14,6 +14,12 @@ public interface TransactionDetailRepo extends JpaRepository<TransactionDetail, 
     TransactionDetail findByTransactionId(String id);
     TransactionDetail findTopByOrderByCreatedAtDesc();
 
+    TransactionDetail findByIndividualIdOrderByCreatedAtDesc(String id);
+
+    TransactionDetail findTopByIndividualIdOrderByCreatedAtDesc(String id);
+
+
+
     @Transactional
     @Modifying
     @Query("update TransactionDetail set Auth = :status where transactionId = :id")
